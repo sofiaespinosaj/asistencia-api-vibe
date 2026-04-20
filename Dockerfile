@@ -9,7 +9,6 @@ RUN npm ci --omit=dev
 
 # Copiar código fuente
 COPY src/ ./src/
-COPY public/ ./public/
 
 # ── Runtime ───────────────────────────────────────────────
 EXPOSE 3000

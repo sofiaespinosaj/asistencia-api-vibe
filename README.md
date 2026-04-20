@@ -94,3 +94,31 @@ vibecoding/
 ├── asistencia.db           # Generado automáticamente al arrancar
 └── package.json
 ```
+
+## Prompt 
+
+Crea una API REST en Node.js con Express para gestionar asistencia estudiantil.
+Elige tú la base de datos que prefieras.
+
+ENDPOINTS REQUERIDOS (los 6):
+1. POST   /api/estudiantes
+2. GET    /api/estudiantes
+3. GET    /api/estudiantes/:id
+4. POST   /api/asistencias
+5. GET    /api/asistencias/estudiante/:id
+6. GET    /api/reportes/ausentismo        → top 5 estudiantes con más ausencias
+
+REGLAS DE NEGOCIO:
+- El campo `codigo` debe ser único, formato EST seguido de exactamente 5 dígitos (ej: EST00123)
+- El campo `estado` en asistencia solo acepta: "presente", "ausente" o "justificada"
+- No se puede registrar dos asistencias para el mismo estudiante en la misma fecha
+- La fecha debe ser válida (YYYY-MM-DD) y no puede ser futura
+
+VALIDACIÓN DE RESPUESTAS:
+- POST /api/estudiantes y GET /api/estudiantes deben responder con código HTTP 200
+
+Que funcione en local con npm start. Dame el código completo.
+
+## URL del despliegue
+
+https://silent-pond-4988.fly.dev/

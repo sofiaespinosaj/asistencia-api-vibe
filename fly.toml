@@ -1,6 +1,6 @@
 # Nombre de tu app en Fly.io (cámbialo si ya existe uno con ese nombre)
-app = "asistencia-api"
-primary_region = "mia"  # Miami — el más cercano a Latinoamérica
+app = "silent-pond-4988"
+primary_region = "dfw"  # Dallas — región activa recomendada por Fly.io
 
 [build]
   dockerfile = "Dockerfile"
