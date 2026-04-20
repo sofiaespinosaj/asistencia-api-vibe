@@ -1,0 +1,4 @@
+node_modules/
+asistencia.db
+*.db-shm
+*.db-wal

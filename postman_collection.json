@@ -1,0 +1,83 @@
+{
+  "info": {
+    "name": "API Asistencia Estudiantil",
+    "description": "Colección con los 6 endpoints de la API de asistencia estudiantil",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Estudiantes",
+      "item": [
+        {
+          "name": "1. POST - Crear estudiante",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/estudiantes",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"codigo\": \"EST00001\",\n  \"nombre\": \"Ana\",\n  \"apellido\": \"García\",\n  \"email\": \"ana@test.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "2. GET - Listar todos los estudiantes",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/estudiantes"
+          }
+        },
+        {
+          "name": "3. GET - Obtener estudiante por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/estudiantes/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Asistencias",
+      "item": [
+        {
+          "name": "4. POST - Registrar asistencia",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/api/asistencias",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estudiante_id\": 1,\n  \"fecha\": \"2026-04-20\",\n  \"estado\": \"presente\",\n  \"observacion\": \"Puntual\"\n}"
+            }
+          }
+        },
+        {
+          "name": "5. GET - Historial de asistencia por estudiante",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/asistencias/estudiante/1"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reportes",
+      "item": [
+        {
+          "name": "6. GET - Top 5 ausentismo",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/api/reportes/ausentismo"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+# Nombre de tu app en Fly.io (cámbialo si ya existe uno con ese nombre)
+app = "asistencia-api"
+primary_region = "mia"  # Miami — el más cercano a Latinoamérica
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  PORT     = "3000"
+  NODE_ENV = "production"
+  DATA_DIR = "/data"
+
+[http_service]
+  internal_port       = 3000
+  force_https         = true
+  auto_stop_machines  = true
+  auto_start_machines = true
+  min_machines_running = 0
+
+  [http_service.concurrency]
+    type       = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+# Volumen para persistir la base de datos SQLite
+[[mounts]]
+  source      = "asistencia_data"
+  destination = "/data"
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
