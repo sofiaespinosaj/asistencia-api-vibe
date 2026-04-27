@@ -7,7 +7,6 @@ const asistenciasRouter = require('./routes/asistencias');
 const reportesRouter = require('./routes/reportes');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 // ── Middlewares globales ──────────────────────
 app.use(express.json());
@@ -46,17 +45,7 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-// ── Arranque: primero inicializar la BD, luego escuchar ───────────────────
-initDB()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-      console.log('   Presiona Ctrl+C para detener');
-    });
-  })
-  .catch((err) => {
-    console.error('❌ Error al inicializar la base de datos:', err);
-    process.exit(1);
-  });
+const dbReady = initDB();
 
 module.exports = app;
+module.exports.dbReady = dbReady;

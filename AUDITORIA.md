@@ -47,3 +47,38 @@
 | 8 | Idempotencia y duplicados | Permite registrar dos asistencias iguales para el mismo estudiante y fecha? | CUMPLE |
 | 9 | Pruebas | Genero alguna prueba automatizada? O cero? | NO CUMPLE |
 | 10 | Documentacion | El README explica como correrlo? Hay comentarios utiles o vacios? | CUMPLE |
+
+---
+
+## Bugs confirmados por pruebas
+
+| # | Prueba | Resultado | Bug revelado |
+|---|--------|-----------|--------------|
+| 1 | Creacion exitosa con codigo valido EST00123 y nombre completo | ✅ PASA | Comportamiento correcto |
+| 2 | Rechazo cuando el codigo tiene formato invalido (abc) | ✅ PASA | Comportamiento correcto |
+| 3 | Rechazo cuando el codigo no empieza por EST (ALU00123) | ✅ PASA | Comportamiento correcto |
+| 4 | Rechazo cuando el codigo EST tiene menos de 5 digitos (EST99) | ✅ PASA | Comportamiento correcto |
+| 5 | Rechazo de estudiante duplicado enviando el mismo codigo dos veces | ✅ PASA | Comportamiento correcto |
+| 6 | Listado cuando no existe ningun estudiante registrado | ✅ PASA | Comportamiento correcto |
+| 7 | Listado despues de crear un estudiante | ✅ PASA | Comportamiento correcto |
+| 8 | Consulta por ID de un estudiante que si existe | ✅ PASA | Comportamiento correcto |
+| 9 | Consulta por ID de un estudiante que no existe | ✅ PASA | Comportamiento correcto |
+| 10 | Creacion con payload vacio (sin enviar ningun campo) | ✅ PASA | Comportamiento correcto |
+| 11 | Registro de asistencia valida con estado presente | ❌ FALLA | La API responde 201 en lugar de 200 en POST /api/asistencias |
+| 12 | Registro de asistencia valida con estado ausente | ❌ FALLA | La API responde 201 en lugar de 200 en POST /api/asistencias |
+| 13 | Registro de asistencia valida con estado justificada | ❌ FALLA | La API responde 201 en lugar de 200 en POST /api/asistencias |
+| 14 | Rechazo de estado no permitido (tardanza, falta) | ✅ PASA | Comportamiento correcto |
+| 15 | Rechazo de fecha futura | ✅ PASA | Comportamiento correcto |
+| 16 | Rechazo de asistencia duplicada: mismo estudiante, misma fecha | ✅ PASA | Comportamiento correcto |
+| 17 | Rechazo cuando faltan campos obligatorios en el payload | ✅ PASA | Comportamiento correcto |
+| 18 | Reporte de ausentismo cuando no hay datos | ✅ PASA | Comportamiento correcto |
+| 19 | Reporte de ausentismo con varios estudiantes registrados | ✅ PASA | Comportamiento correcto |
+
+### Resumen de cobertura
+- Total de pruebas escritas: 19
+- Pruebas que pasan: 16
+- Pruebas que fallan: 3
+- Porcentaje de exito: 84.21%
+- Conclusion: El codigo generado por IA muestra una base funcional razonable en validaciones y reglas de negocio, pero presenta una inconsistencia de contrato HTTP en el alta de asistencias (201 vs 200) que rompe expectativas de clientes y pruebas. El area mas problematica detectada por las pruebas fue la estandarizacion de respuestas para operaciones de creacion.
+
+---
